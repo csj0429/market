@@ -38,7 +38,7 @@ eureka:
   client:
     serviceUrl:
       # 注册中心地址
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+      defaultZone: http://eureka1:8761/eureka/,http://eureka2:8762/eureka/
 
 
 
