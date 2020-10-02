@@ -3,19 +3,15 @@ spring:
   application:
     name: market
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/common_account?serverTimezone=UTC
+    url: jdbc:mysql://adev.top:3306/adev-account?serverTimezone=UTC
     username: root
-    password: sjchen
-    driver-class-name: com.mysql.jdbc.Driver
+    password: 239ea79e9e2a61df
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update #important! Don't change!
       use-new-id-generator-mappings: true
     show-sql: false
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    password: 123456
   rabbitmq:
     host: adev.top
     port: 5672
@@ -25,7 +21,9 @@ spring:
 # 应用服务web访问端口
 server:
   port: 8091
-
+---
+spring:
+  profiles: test
 # eureka客户端配置
 eureka:
   instance:
@@ -38,8 +36,23 @@ eureka:
   client:
     serviceUrl:
       # 注册中心地址
-      defaultZone: http://eureka1:8761/eureka/,http://eureka2:8762/eureka/
-
+      defaultZone: http://adev.top:8761/eureka/,http://adev.top:8762/eureka/
+---
+spring:
+  profiles: dev
+# eureka客户端配置
+eureka:
+  instance:
+    # 使用 ip 代替实例名
+    prefer-ip-address: true
+    # 实例的主机名
+    hostname: ${spring.cloud.client.ip-address}
+    # 实例的 ID 规则
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      # 注册中心地址
+      defaultZone: http://127.0.0.1:8761/eureka/
 
 
       
