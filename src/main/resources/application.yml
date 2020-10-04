@@ -7,7 +7,7 @@ spring:
     username: root
     password: 239ea79e9e2a61df
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
+  jpa:    #sss jpa的配置说明
     hibernate:
       ddl-auto: update #important! Don't change!
       use-new-id-generator-mappings: true
